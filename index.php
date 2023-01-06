@@ -46,7 +46,7 @@ function set($arr, $key)
     <header>
       <h1>MiniBlog</h1>
       <div class="actions">
-        <p>Hi! <?= set('user', 'name') ?></p>
+        <p>Hi! <?= set('user', 'username') ?></p>
         <a href="index.php">Home</a>
         <form action="process/form-process.php" method="post">
           <input type="hidden" name="logout" value="logout">
