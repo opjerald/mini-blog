@@ -2,7 +2,7 @@
 
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
-define('DB_PASS', 'icep@ngrizz');
+define('DB_PASS', ''); #Input yout database password here if you have.
 define('DB_DATABASE', 'mini_blog');
 
 $connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_DATABASE);
