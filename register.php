@@ -1,8 +1,16 @@
 <?php
 
 session_start();
+
+$dir = explode('\\', getcwd());
+$folder = end($dir);
+
 if (!isset($_SESSION['reg-errors'])) {
   $_SESSION['reg-errors'] = [];
+}
+
+if (isset($_SESSION['user'])) {
+  header("Refresh: 0, url = /$folder/login.php");
 }
 
 unset($_SESSION['log-errors']);
@@ -12,10 +20,6 @@ function set($arr, $key)
   if (isset($_SESSION[$arr][$key])) {
     return $_SESSION[$arr][$key];
   }
-}
-
-if (isset($_SESSION['user'])) {
-  header('Refresh: 0, url = /exam/login.php');
 }
 
 ?>

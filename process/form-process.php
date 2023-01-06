@@ -3,6 +3,9 @@
 session_start();
 require_once('connection.php');
 
+$dir = explode('\\', dirname(__DIR__));
+$folder = end($dir);
+
 $_SESSION['message']['login'] = "";
 
 if (isset($_POST['register'])) {
@@ -39,11 +42,11 @@ if (isset($_POST['register'])) {
                     VALUES ('$username', '$email', '$password', NOW(), NOW())";
     run_mysql_query($add_account);
     $_SESSION['message']['login'] = "Account successully registered!";
-    header('Refresh: 0, url = /exam/login.php');
+    header("Refresh: 0, url = /$folder/login.php");
     die();
   }
 
-  header('Refresh: 0, url = /exam/register.php');
+  header("Refresh: 0, url = /$folder/register.php");
 } else if (isset($_POST['login'])) {
   if (isset($_POST['email']) && empty($_POST['email'])) {
     $_SESSION['log-errors']['email'] = "*Email is a required field";
@@ -63,7 +66,7 @@ if (isset($_POST['register'])) {
           'id' => $user['id'],
           'username' => $user['username'],
         ];
-        header('Refresh: 0, url = /exam/index.php');
+        header("Refresh: 0, url = /$folder/index.php");
         die();
       } else {
         $_SESSION['log-errors']['message'] = "Invalid Username or Password!";
@@ -73,8 +76,8 @@ if (isset($_POST['register'])) {
     }
   }
 
-  header('Refresh: 0, url = /exam/login.php');
+  header("Refresh: 0, url = /$folder/login.php");
 } else if (isset($_POST['logout'])) {
   unset($_SESSION['user']);
-  header('Refresh: 0, url = /exam/login.php');
+  header("Refresh: 0, url = /$folder/login.php");
 }

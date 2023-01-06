@@ -1,6 +1,9 @@
 <?php
 
 session_start();
+$dir = explode('\\', getcwd());
+$folder = end($dir);
+
 if (!isset($_SESSION['log-errors'])) {
   $_SESSION['log-errors'] = [];
 }
@@ -15,7 +18,7 @@ function set($arr, $key)
 }
 
 if (isset($_SESSION['user'])) {
-  header('Location: index.php');
+  header("Refresh: 0, url = /$folder/login.php");
 }
 
 ?>

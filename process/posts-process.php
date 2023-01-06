@@ -3,6 +3,9 @@
 session_start();
 require_once('connection.php');
 
+$dir = explode('\\', dirname(__DIR__));
+$folder = end($dir);
+
 if (isset($_POST['crud']) && $_POST['crud'] == 'create') {
   if (isset($_POST['title']) && empty($_POST['title'])) {
     $_SESSION['errors']['title'] = "*Title field is a required field";
@@ -23,11 +26,11 @@ if (isset($_POST['crud']) && $_POST['crud'] == 'create') {
 
     $_SESSION['message']['index'] = "Post successfully created!";
 
-    header('Refresh: 0, url = /exam/index.php');
+    header("Refresh: 0, url = /$folder/index.php");
     die();
   }
 
-  header('Refresh: 0, url = /exam/new.php');
+  header("Refresh: 0, url = /$folder/new.php");
 } else if (isset($_POST['crud']) && $_POST['crud'] == 'delete') {
 
   $post_id = escape_this_string($_POST['post_id']);
@@ -36,14 +39,14 @@ if (isset($_POST['crud']) && $_POST['crud'] == 'create') {
 
   $_SESSION['message']['index'] = "Post successfully deleted!";
 
-  header('Refresh: 0, url = /exam/index.php');
+  header("Refresh: 0, url = /$folder/index.php");
 } else if (isset($_POST['crud']) && $_POST['crud'] == 'edit') {
 
   $post_id = escape_this_string($_POST['post_id']);
   $query = "SELECT * FROM posts WHERE id = $post_id";
   $_SESSION['post'] = fetch_record($query);
 
-  header('Refresh: 0, url = /exam/edit.php');
+  header("Refresh: 0, url = /$folder/edit.php");
 } else if (isset($_POST['crud']) && $_POST['crud'] == 'update') {
 
   if (isset($_POST['title']) && empty($_POST['title'])) {
@@ -68,9 +71,9 @@ if (isset($_POST['crud']) && $_POST['crud'] == 'create') {
 
     $_SESSION['message']['index'] = "Post successfully updated!";
 
-    header('Refresh: 0, url = /exam/index.php');
+    header("Refresh: 0, url = /$folder/index.php");
     die();
   }
 
-  header('Refresh: 0, url = /exam/edit.php');
+  header("Refresh: 0, url = /$folder/edit.php");
 }

@@ -1,12 +1,15 @@
 <?php
 session_start();
 
+$dir = explode('\\', getcwd());
+$folder = end($dir);
+
 if (!isset($_SESSION['errors'])) {
   $_SESSION['errors'] = [];
 }
 
 if (!isset($_SESSION['user'])) {
-  header('Refresh: 0, url = /exam/login.php');
+  header("Refresh: 0, url = /$folder/login.php");
 }
 
 function set($arr, $key)

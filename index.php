@@ -3,13 +3,16 @@
 session_start();
 require_once('process/connection.php');
 
+$dir = explode('\\', getcwd());
+$folder = end($dir);
+
+if (!isset($_SESSION['user'])) {
+  header("Refresh: 0, url = /$folder/login.php");
+}
+
 unset($_SESSION['post']);
 unset($_SESSION['log-errors']);
 unset($_SESSION['errors']);
-
-if (!isset($_SESSION['user'])) {
-  header('Refresh: 0, url = /exam/login.php');
-}
 
 $query = "SELECT id, user_id, title, content, DATE_FORMAT(created_at, \"%M %D %Y %I:%i%p\") as created_at
           FROM posts
@@ -43,7 +46,7 @@ function set($arr, $key)
     <header>
       <h1>MiniBlog</h1>
       <div class="actions">
-        <p>Hi! <?= $_SESSION['user']['username'] ?></p>
+        <p>Hi! <?= set('user', 'name') ?></p>
         <a href="index.php">Home</a>
         <form action="process/form-process.php" method="post">
           <input type="hidden" name="logout" value="logout">

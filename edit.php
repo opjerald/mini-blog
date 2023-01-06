@@ -1,17 +1,20 @@
 <?php
 session_start();
 
+$dir = explode('\\', getcwd());
+$folder = end($dir);
+
 if (!isset($_SESSION['errors'])) {
   $_SESSION['errors'] = [];
 }
 
 if (!isset($_SESSION['user'])) {
-  header('Refresh: 0, url = /exam/login.php');
+  header("Refresh: 0, url = /$folder/login.php");
 }
 
 if (!isset($_SESSION['post'])) {
   $_SESSION['message']['index'] = 'You need to select a post first before proceeding to edit.';
-  header('Refresh: 0, url = /exam/index.php');
+  header("Refresh: 0, url = /$folder/index.php");
 }
 
 function set($arr, $key)
