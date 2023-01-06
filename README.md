@@ -13,6 +13,7 @@
 - DB_PASS - Database Password
 - DB_DATABASE - The Database that will be use.
 2. Create your database manually in your DB Manager.
+3. There is a example sql file in `assets` you just need to run it on your DB Manager.
 
 ## How to use?
 1. Clone or download this repository.
